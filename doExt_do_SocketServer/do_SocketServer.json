@@ -1,0 +1,145 @@
+{
+  "ID": "do_SocketServer",
+  "IsContainer": "0",
+  "Type": "SM",
+  "UIType": "Layout",
+  "Name": "Socket服务端",
+  "Version": "Internal",
+  "Description": "通过Socket建立网络连接，进行通信，TCP协议",
+  "Icon": "",
+  "BBS": "",
+  "Keyword": "网络通信",
+  "IOS": {
+    "Support": 0,
+    "MinVersion": ""
+  },
+  "Android": {
+    "Support": 0,
+    "MinVersion": ""
+  },
+  "Windows": {
+    "Support": 0,
+    "MinVersion": ""
+  },
+  "WindowsPhone": {
+    "Support": 0,
+    "MinVersion": ""
+  },
+  "Html": {
+    "Support": 1,
+    "MinVersion": "5.0"
+  },
+  "Properties": [],
+  "Events": [
+    {
+      "ID": "error",
+      "Description": "监听异常",
+      "ReturnType": "Node",
+      "ReturnType_JavaScript": "Node",
+      "ReturnDesc": "监听成功后断开网络时触发，返回错误信息msg",
+      "Deprecated": false
+    },
+    {
+      "ID": "listen",
+      "Description": "监听事件",
+      "ReturnType": "Node",
+      "ReturnType_JavaScript": "Node",
+      "ReturnDesc": "如果有客户端连接上该服务端,则触发该事件,并且返回该客户端的ip,格式为'ip:192.168.0.95'",
+      "Deprecated": false
+    },
+    {
+      "ID": "receive",
+      "Description": "接收数据",
+      "ReturnType": "String",
+      "ReturnType_JavaScript": "String",
+      "ReturnDesc": "接收到的16进制数据",
+      "Deprecated": false
+    }
+  ],
+  "syncMethodes": [
+    {
+      "ID": "startListen",
+      "Name": "开启监听",
+      "Description": "开启监听后客户端才能进行连接",
+      "ReturnType": "Bool",
+      "ReturnType_JavaScript": "Bool",
+      "ReturnDesc": "开启监听是否成功",
+      "Paras": [
+        {
+          "ID": "serverPort",
+          "Name": "监听端口号",
+          "Type": "String",
+          "Type_JavaScript": "String",
+          "Required": 0,
+          "DefaultValue": "9999",
+          "Description": "",
+          "Deprecated": false
+        }
+      ],
+      "Deprecated": false
+    },
+    {
+      "ID": "stopListen",
+      "Name": "结束监听",
+      "Description": "结束监听",
+      "ReturnType": "",
+      "ReturnType_JavaScript": "",
+      "ReturnDesc": "",
+      "Paras": [],
+      "Deprecated": false
+    }
+  ],
+  "asyncMethodes": [
+    {
+      "ID": "send",
+      "Name": "发送数据",
+      "Description": "向客户端发送数据,如果clientIP和clientPort指定有值,则发送给对应的客户端,否则发送给所有连接到该服务端的客户端",
+      "ReturnType": "Bool",
+      "ReturnType_JavaScript": "Bool",
+      "ReturnDesc": "数据是否发送成功",
+      "Paras": [
+        {
+          "ID": "type",
+          "Name": "发送数据的格式",
+          "Type": "String",
+          "Type_JavaScript": "String",
+          "Required": 1,
+          "DefaultValue": "",
+          "Description": "如果发送的数据是字符串,type指定字符串的编码方式,支持UTF-8,GBK;如果发送的是16进制字符串,type为HEX;如果发送的是文件,type为file",
+          "Deprecated": false
+        },
+        {
+          "ID": "content",
+          "Name": "发送内容",
+          "Type": "String",
+          "Type_JavaScript": "String",
+          "Required": 1,
+          "DefaultValue": "",
+          "Description": "如果发送的是文件，content指定文件的全路径",
+          "Deprecated": false
+        },
+        {
+          "ID": "clientIP",
+          "Name": "客户端IP",
+          "Type": "String",
+          "Type_JavaScript": "String",
+          "Required": 0,
+          "DefaultValue": "",
+          "Description": "要发送的客户端IP,可以为空,为空时发送给所有的客户端",
+          "Deprecated": false
+        },
+        {
+          "ID": "clientPort",
+          "Name": "客户端端口号",
+          "Type": "String",
+          "Type_JavaScript": "String",
+          "Required": 0,
+          "DefaultValue": "",
+          "Description": "要发送的客户端端口号,可以为空,为空时发送给所有的客户端",
+          "Deprecated": false
+        }
+      ],
+      "Deprecated": false
+    }
+  ]
+}
